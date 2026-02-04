@@ -1,0 +1,65 @@
+﻿<Page x:Class="UnoTest.Presentation.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:UnoTest.Presentation"
+      xmlns:uen="using:Uno.Extensions.Navigation.UI"
+      xmlns:utu="using:Uno.Toolkit.UI"
+      xmlns:um="using:Uno.Material" 
+      xmlns:ui="using:Uno.Extensions.Reactive.UI" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+      NavigationCacheMode="Required"
+      Background="{ThemeResource BackgroundBrush}" d:DataContext="{d:DesignInstance local:MainViewModel }">
+    <ScrollViewer IsTabStop="True">
+        <Grid utu:SafeArea.Insets="VisibleBounds">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <utu:NavigationBar Content="{Binding Title}" />
+
+            <StackPanel Grid.Row="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Spacing="16">
+                <TextBox Text="{Binding Name, Mode=TwoWay}"
+                         PlaceholderText="Enter your name:" />
+                <Button Content="Go to Second Page"
+                        AutomationProperties.AutomationId="SecondPageButton"
+                        Command="{Binding GoToSecond}" />
+                <Button Content="TestFeed" Click="Button_Click"/>
+
+                <ui:FeedView Source="{Binding CurrentWeather}" x:Name="TestFeedView" d:DataContext="{d:DesignInstance ui:FeedViewState}">
+                    <ui:FeedView.ValueTemplate>
+                        <DataTemplate>
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="Current weather (from feed):" />
+                                <TextBlock Text="{Binding Data.Summary}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ui:FeedView.ValueTemplate>
+                    <ui:FeedView.ProgressTemplate>
+                        <DataTemplate>
+                            <ProgressRing />
+                        </DataTemplate>
+                    </ui:FeedView.ProgressTemplate>
+                    <ui:FeedView.ErrorTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Error" />
+                        </DataTemplate>
+                    </ui:FeedView.ErrorTemplate>
+                    <ui:FeedView.NoneTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="No Results" />
+                        </DataTemplate>
+                    </ui:FeedView.NoneTemplate>
+                    <ui:FeedView.UndefinedTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Undefined" />
+                        </DataTemplate>
+                    </ui:FeedView.UndefinedTemplate>
+                </ui:FeedView>
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
