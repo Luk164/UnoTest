@@ -4,7 +4,8 @@ public sealed partial class MainPage : Page
 {
     public MainPage()
     {
-        this.InitializeComponent();
+        InitializeComponent();
+        var dc = DataContext; // likely null
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)

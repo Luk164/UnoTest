@@ -1,7 +1,6 @@
 namespace UnoTest.Presentation;
 
 using Uno.Extensions.Reactive;
-using Uno.Extensions.Reactive.Bindings;
 
 [ReactiveBindable]
 public partial record MainModel
@@ -36,7 +35,6 @@ public partial record MainModel
         var name = await Name;
         await _navigator.NavigateViewModelAsync<SecondModel>(this, data: new Entity(name!));
     }
-
 }
 
 public class WeatherInfo
