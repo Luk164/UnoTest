@@ -15,12 +15,26 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <utu:NavigationBar Content="{Binding Title}" />
+            <utu:NavigationBar>
+                <utu:NavigationBar.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}"/>
+                        <ToggleSwitch Toggled="OnDarkModeToggleToggled">
+                            <ToggleSwitch.OffContent>
+                                <SymbolIcon Symbol="UnFavorite" />
+                            </ToggleSwitch.OffContent>
+                            <ToggleSwitch.OnContent>
+                                <SymbolIcon Symbol="Favorite" />
+                            </ToggleSwitch.OnContent>
+                        </ToggleSwitch>
+                    </StackPanel>
+                </utu:NavigationBar.Content>
+            </utu:NavigationBar>
 
             <StackPanel Grid.Row="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Spacing="16">
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="16">
                 <TextBox Text="{Binding Name, Mode=TwoWay}"
                          PlaceholderText="Enter your name:" />
                 <Button Content="Go to Second Page"
@@ -28,12 +42,12 @@
                         Command="{Binding GoToSecond}" />
                 <Button Content="TestFeed" Click="Button_Click"/>
 
-                <ui:FeedView Source="{Binding CurrentWeather}" x:Name="TestFeedView" d:DataContext="{d:DesignInstance ui:FeedViewState}">
+                <ui:FeedView Source="{Binding CurrentWeather}" x:Name="TestFeedView" >
                     <ui:FeedView.ValueTemplate>
                         <DataTemplate>
                             <StackPanel Spacing="4">
                                 <TextBlock Text="Current weather (from feed):" />
-                                <TextBlock Text="{Binding Data.Summary}" />
+                                <TextBlock Text="{Binding Data.Summary, FallbackValue=No summary available}" d:DataContext="{d:DesignInstance ui:FeedViewState}" />
                             </StackPanel>
                         </DataTemplate>
                     </ui:FeedView.ValueTemplate>

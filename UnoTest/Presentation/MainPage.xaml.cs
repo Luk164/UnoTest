@@ -5,6 +5,7 @@ public sealed partial class MainPage : Page
     public MainPage()
     {
         InitializeComponent();
+
         var dc = DataContext; // likely null
     }
 
@@ -13,5 +14,13 @@ public sealed partial class MainPage : Page
         TestFeedView.Refresh.Execute(null);
         // TestFeedView.VisualStateSelector
         var test = TestFeedView.RefreshingState;
+    }
+
+    private void OnDarkModeToggleToggled(object sender, RoutedEventArgs e)
+    {
+        var darkModeToggle = (ToggleSwitch)sender;
+        var theme = darkModeToggle.IsOn ? ElementTheme.Light : ElementTheme.Dark;
+
+        SystemThemeHelper.SetApplicationTheme(XamlRoot, theme);
     }
 }
