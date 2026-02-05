@@ -2,7 +2,6 @@ namespace UnoTest.Presentation;
 
 using Uno.Extensions.Reactive;
 
-[ReactiveBindable]
 public partial record MainModel
 {
     private INavigator _navigator;

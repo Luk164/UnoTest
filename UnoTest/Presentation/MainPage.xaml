@@ -40,9 +40,9 @@
                 <Button Content="Go to Second Page"
                         AutomationProperties.AutomationId="SecondPageButton"
                         Command="{Binding GoToSecond}" />
-                <Button Content="TestFeed" Click="Button_Click"/>
+                <Button Content="TestButton" Click="Button_Click"/>
 
-                <ui:FeedView Source="{Binding CurrentWeather}" x:Name="TestFeedView" >
+                <ui:FeedView Source="{Binding CurrentWeather}" d:DataContext="{d:DesignInstance ui:FeedViewState}" x:Name="TestFeedView" >
                     <ui:FeedView.ValueTemplate>
                         <DataTemplate>
                             <StackPanel Spacing="4">
