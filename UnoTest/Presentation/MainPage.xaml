@@ -42,12 +42,12 @@
                         Command="{Binding GoToSecond}" />
                 <Button Content="TestButton" Click="Button_Click"/>
 
-                <ui:FeedView Source="{Binding CurrentWeather}" d:DataContext="{d:DesignInstance ui:FeedViewState}" x:Name="TestFeedView" >
+                <ui:FeedView Source="{Binding CurrentWeather}" x:Name="TestFeedView" >
                     <ui:FeedView.ValueTemplate>
                         <DataTemplate>
                             <StackPanel Spacing="4">
                                 <TextBlock Text="Current weather (from feed):" />
-                                <TextBlock Text="{Binding Data.Summary, FallbackValue=No summary available}" d:DataContext="{d:DesignInstance ui:FeedViewState}" />
+                                <TextBlock Text="{Binding Data.Summary, FallbackValue=No summary available}" DataContext="{d:DesignInstance ui:FeedViewState}" />
                             </StackPanel>
                         </DataTemplate>
                     </ui:FeedView.ValueTemplate>
