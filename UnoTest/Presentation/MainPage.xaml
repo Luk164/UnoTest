@@ -45,9 +45,9 @@
                 <ui:FeedView Source="{Binding CurrentWeather}" x:Name="TestFeedView" >
                     <ui:FeedView.ValueTemplate>
                         <DataTemplate>
-                            <StackPanel Spacing="4">
+                            <StackPanel Spacing="4" d:DataContext="{d:DesignInstance ui:FeedViewState}">
                                 <TextBlock Text="Current weather (from feed):" />
-                                <TextBlock Text="{Binding Data.Summary, FallbackValue=No summary available}" DataContext="{d:DesignInstance ui:FeedViewState}" />
+                                <TextBlock Text="{Binding Data.Summary, FallbackValue='Fallback text'}" />
                             </StackPanel>
                         </DataTemplate>
                     </ui:FeedView.ValueTemplate>

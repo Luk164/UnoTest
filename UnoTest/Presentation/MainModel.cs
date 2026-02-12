@@ -21,13 +21,15 @@ public partial record MainModel
 
     public IState<string> Name => State<string>.Value(this, () => string.Empty);
 
-    public IFeed<WeatherInfo> CurrentWeather => Feed.Async(GetWeatherAsync);
+    public IFeed<WeatherInfo> CurrentWeather => Feed<WeatherInfo>.Async(GetWeatherAsync);
 
     private static async ValueTask<WeatherInfo> GetWeatherAsync(CancellationToken ct)
     {
         await Task.Delay(250, ct);
         return new WeatherInfo();
     }
+
+    public IFeed<Entity> DummyFeed => Feed<Entity>.Async(_ => new ValueTask<Entity>(new Entity("Hello World")));
 
     public async Task GoToSecond()
     {
@@ -36,6 +38,7 @@ public partial record MainModel
     }
 }
 
+// Only works when changed to a record type
 public class WeatherInfo
 {
     public string? Summary { get; set; } = "Foo";
